@@ -1,0 +1,36 @@
+version: "3"
+services:
+    backend01:
+        build:
+            context: ./api
+            dockerfile: Dockerfile
+        environment:
+            - APP_NAME=backend01
+            - POST_LISTS=yes,no,hehe
+        ports:
+            - 3001:3000
+    backend02:
+        build:
+            context: ./api
+            dockerfile: Dockerfile
+        environment:
+            - APP_NAME=backend02
+            - POST_LISTS=02,02,02
+        ports:
+            - 3002:3000
+    backend03:
+        build:
+            context: ./api
+            dockerfile: Dockerfile
+        environment:
+            - APP_NAME=backend03
+            - POST_LISTS=03,03,03
+        ports:
+            - 3003:3000
+    frontend:
+        build:
+            context: ./frontend
+            dockerfile: Dockerfile
+        environment:
+            - PUBLIC_API_HOST=proxy
+            - PUBLIC_API_PORT=80
